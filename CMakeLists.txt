@@ -6,6 +6,6 @@ project(${PROJECT_NAME} LANGUAGES CXX)
 
 add_subdirectory(cmake)
 
-add_executable(max_area_of_island sprint1/max_area_of_island/max_area_of_island.cpp)
+add_executable(binary_sort sprint1/binary_sort/binary_sort.cpp)
 
-target_link_libraries(max_area_of_island PRIVATE fmt::fmt doctest::doctest)
+target_link_libraries(binary_sort PRIVATE fmt::fmt doctest::doctest)
