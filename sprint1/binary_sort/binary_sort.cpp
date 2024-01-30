@@ -1,4 +1,3 @@
-#include <iterator>
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 #include "doctest/doctest.h"
 #include <ranges>
@@ -15,6 +14,7 @@ inline int binary_search(const std::ranges::random_access_range auto &rg, auto t
   while(distance(left, right) >= 0)
   {
     auto mid = next(left, (distance(left, right) / 2));
+    [[unlikely]]
     if(*mid == target)
       return std::distance(begin(rg), mid);
 
