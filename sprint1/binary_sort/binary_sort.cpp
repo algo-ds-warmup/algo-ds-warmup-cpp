@@ -8,22 +8,21 @@ inline int binary_search(const std::ranges::random_access_range auto &rg, auto t
   requires std::is_same_v<decltype(target), std::ranges::range_value_t<decltype(rg)>>
 {
   using namespace std::ranges;
-  if(size(rg) == 0)
-    return -1;
+
   auto left{begin(rg)};
   auto right{prev(end(rg))};
 
-  while(left <= right)
+  while(distance(left, right) >= 0)
   {
-    auto mid {left + (distance(left, right) / 2)};
+    auto mid = next(left, (distance(left, right) / 2));
     if(*mid == target)
       return std::distance(begin(rg), mid);
 
     if(*mid > target)
-      right = mid - 1;
+      right = prev(mid);
     
     if(*mid < target)
-      left = mid + 1;
+      left = next(mid);
   }
 
   return -1;
