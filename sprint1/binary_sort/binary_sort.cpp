@@ -1,28 +1,31 @@
+#include <iterator>
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 #include "doctest/doctest.h"
-#include <concepts>
 #include <ranges>
 
-auto binary_search(std::ranges::random_access_range auto const &rg,
-                   auto target) {
-  if (std::ranges::size(rg) == 0) {
+// required return type -> int 
+inline int binary_search(const std::ranges::random_access_range auto &rg, auto target)
+  requires std::is_same_v<decltype(target), std::ranges::range_value_t<decltype(rg)>>
+{
+  using namespace std::ranges;
+  if(size(rg) == 0)
     return -1;
-  }
-  auto left{std::ranges::begin(rg)};
-  auto right{std::ranges::end(rg) - 1};
+  auto left{begin(rg)};
+  auto right{prev(end(rg))};
 
-  while (left <= right) {
-    auto mid{left + (right - left) / 2};
+  while(left <= right)
+  {
+    auto mid {left + (distance(left, right) / 2)};
+    if(*mid == target)
+      return std::distance(begin(rg), mid);
 
-    if (*mid == target)
-      return static_cast<int>(std::distance(std::ranges::begin(rg), mid));
-
-    if (*mid < target) {
-      left = mid + 1;
-    } else {
+    if(*mid > target)
       right = mid - 1;
-    }
+    
+    if(*mid < target)
+      left = mid + 1;
   }
+
   return -1;
 }
 
