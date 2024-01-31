@@ -6,6 +6,10 @@ project(${PROJECT_NAME} LANGUAGES CXX)
 
 add_subdirectory(cmake)
 
+#sprint1
 add_executable(binary_search sprint1/binary_search/binary_search.cpp)
+add_executable(koko sprint1/koko-eating-bananas/koko-eating-bananas.cpp)
+
 
 target_link_libraries(binary_search PRIVATE fmt::fmt doctest::doctest)
+target_link_libraries(koko PRIVATE fmt::fmt doctest::doctest)
