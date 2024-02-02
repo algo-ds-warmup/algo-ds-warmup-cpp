@@ -9,10 +9,10 @@ inline int min_eating_spead(std::ranges::random_access_range auto &piles,
   long long speed{right};
 
   while (left <= right) {
-    long long mid = (left + right) / 2;
+    long long mid = std::midpoint(left, right);
 
     long long int h = std::accumulate(std::ranges::begin(piles), std::ranges::end(piles),
-                            0ll, [mid](long long ret, long long bananas) {
+                            0LL, [mid](long long ret, long long bananas) {
                               return ret + (bananas + mid - 1) / mid;
                             });
 
