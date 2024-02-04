@@ -21,17 +21,10 @@ int find_min(const std::vector<int> &nums) {
 
     fmt::print("[{} : {}], mid={}\n", nums[left], nums[right], nums[mid]);
 
-    if (nums[right] > nums[mid] && nums[right] > nums[left]) {
-      return std::min(nums[left], min);
-
-    } else {
-      // rotated only
-      if (nums[mid] < nums[left]) {
-        right = mid - 1;
-      } else {
-        left = mid + 1;
-      }
-    }
+    if (nums[mid] > nums[right]) {
+      left = mid + 1;
+    } else
+      right = mid - 1;
   }
 
   return min;
@@ -46,4 +39,4 @@ TEST_CASE("TC 2") { CHECK(find_min({2, 3, 1}) == 1); }
 TEST_CASE("TC 3") { CHECK(find_min({1}) == 1); }
 TEST_CASE("TC 4") { CHECK(find_min({2, 3, 4, 5, 1}) == 1); }
 TEST_CASE("TC 5") { CHECK(find_min({7, 8, 1, 2, 3, 4, 5, 6}) == 1); }
-TEST_CASE("TC 6") { CHECK(find_min({4,5,1,2,3}) == 1); }
+TEST_CASE("TC 6") { CHECK(find_min({4, 5, 1, 2, 3}) == 1); }
