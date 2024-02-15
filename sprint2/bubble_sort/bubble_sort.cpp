@@ -30,7 +30,7 @@ static void BM_bubble_sort_naive(benchmark::State &state) {
       for (auto left{input.begin()}, right{std::next(left)};
            right < input.end(); ++left, ++right) {
         if (*left > *right) {
-          std::swap(left, right);
+          std::iter_swap(left, right);
           sorted = false;
         }
       }
@@ -54,7 +54,7 @@ static void BM_bubble_sort_decrease_rg(benchmark::State &state) {
       for (auto left{beg}, right{std::next(left)}; right < end;
            ++left, ++right) {
         if (*left > *right) {
-          std::swap(left, right);
+          std::iter_swap(left, right);
           sorted = false;
         }
       }
