@@ -13,8 +13,11 @@ add_executable(find-minimum-in-rotated-sorted-array sprint1/find-minimum-in-rota
 
 #sprint2
 add_executable(bubble_sort_bm sprint2/bubble_sort/bubble_sort.cpp)
+add_executable(trim_mean sprint2/trim_mean/trim_mean.cpp)
 
 target_link_libraries(binary_search PRIVATE fmt::fmt doctest::doctest)
 target_link_libraries(koko PRIVATE fmt::fmt doctest::doctest)
 target_link_libraries(find-minimum-in-rotated-sorted-array PRIVATE fmt::fmt doctest::doctest)
+
 target_link_libraries(bubble_sort_bm PRIVATE fmt::fmt benchmark::benchmark)
+target_link_libraries(trim_mean PRIVATE fmt::fmt doctest::doctest)
