@@ -14,13 +14,11 @@ generate_random_vector(size_t n, DATA_ORDER order = DATA_ORDER::RANDOM,
   result.reserve(n);
 
   auto view = std::views::iota(min_value, max_value) | std::views::take(n);
-  if(order == DATA_ORDER::SORTED){
+  if (order == DATA_ORDER::SORTED) {
     std::ranges::copy(view, std::back_inserter(result));
-  }
-  else if(order == DATA_ORDER::REVERSED){
+  } else if (order == DATA_ORDER::REVERSED) {
     std::ranges::copy(view | std::views::reverse, std::back_inserter(result));
-  }
-  else if (order == DATA_ORDER::RANDOM) {
+  } else if (order == DATA_ORDER::RANDOM) {
     std::ranges::copy(view, std::back_inserter(result));
     std::random_device rd;
     std::mt19937 gen{rd()};
@@ -39,19 +37,16 @@ static void BM_insertion_sort(benchmark::State &state, Args &&...args) {
   state.ResumeTiming();
 
   for (auto _ : state) {
-    for (size_t i{1}; i < input.size(); ++i) {
+    for (int i{1}; i < input.size(); ++i) {
       auto tmp{input[i]};
-      size_t k{i - 1};
-      while (k >= 0) {
-        if (input[i] < input[k])
-          input[k + 1] = input[k];
-        else
-          break;
+      int k{i};
+      while (k > 0 && input[k - 1] > tmp) {
+        input[k] = input[k - 1];
+        --k;
       }
       input[k] = tmp;
     }
   }
-
   state.SetComplexityN(state.range(0));
 }
 
@@ -115,16 +110,17 @@ static void BM_bubble_sort_decrease_rg(benchmark::State &state) {
 /*     ->Complexity(); */
 
 /* BENCHMARK(BM_insertion_sort)->Name("InsertionSort") */
+
 BENCHMARK_CAPTURE(BM_insertion_sort, Sorted, DATA_ORDER::SORTED)
-    ->Range(1 << 12, 1 << 22)
+    ->Range(1 << 12, 1 << 16)
     ->Iterations(3)
     ->Complexity();
 BENCHMARK_CAPTURE(BM_insertion_sort, Random, DATA_ORDER::RANDOM)
-    ->Range(1 << 12, 1 << 22)
+    ->Range(1 << 12, 1 << 16)
     ->Iterations(3)
     ->Complexity();
 BENCHMARK_CAPTURE(BM_insertion_sort, Reversed, DATA_ORDER::REVERSED)
-    ->Range(1 << 12, 1 << 22)
+    ->Range(1 << 12, 1 << 16)
     ->Iterations(3)
     ->Complexity();
 
