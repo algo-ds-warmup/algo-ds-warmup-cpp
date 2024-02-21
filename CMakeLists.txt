@@ -16,6 +16,7 @@ add_executable(bubble_sort_bm sprint2/bubble_sort/bubble_sort.cpp)
 add_executable(trim_mean sprint2/trim_mean/trim_mean.cpp)
 add_executable(dominant_index sprint2/dominant_index/dominant_index.cpp)
 add_executable(third_max sprint2/third_max/third_max.cpp)
+add_executable(relative_ranks sprint2/relative_ranks/relative_ranks.cpp)
 
 
 
@@ -27,5 +28,6 @@ target_link_libraries(bubble_sort_bm PRIVATE fmt::fmt benchmark::benchmark)
 target_link_libraries(trim_mean PRIVATE fmt::fmt doctest::doctest)
 target_link_libraries(dominant_index PRIVATE fmt::fmt doctest::doctest)
 target_link_libraries(third_max PRIVATE fmt::fmt doctest::doctest)
+target_link_libraries(relative_ranks PRIVATE fmt::fmt doctest::doctest)
 
 
