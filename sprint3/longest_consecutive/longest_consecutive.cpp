@@ -9,26 +9,17 @@ int longest_consecutive(std::vector<int>& nums)
 {
     if (nums.empty())
         return 0;
-    auto v = std::views::all(nums) | std::views::transform([](int el) { return std::pair<int, int>{el, 1}; });
-    std::unordered_map<int, int> value_cons{v.begin(), v.end()};
-    int longest_cons{1};
-    for (auto i{0}; i < nums.size(); ++i)
-    {
-        auto curr = std::next(nums.begin(), i);
-        int cons{0};
-        for (auto v = *curr; value_cons.contains(v) && value_cons[v]; --v)
-        {
-          value_cons[v] = 0;
-          cons += 1;
-        }
-        for (auto v = *curr + 1; value_cons.contains(v) && value_cons[v]; ++v)
-        {
-          value_cons[v] = 0;
-          cons += 1;
-        }
 
-        longest_cons = std::max(longest_cons, cons);
-    }
+    std::unordered_set<int> nums_set(nums.begin(), nums.end());
+    int longest_cons = 1;
+    std::ranges::for_each(nums_set | std::views::filter([&](int num) { return !nums_set.contains(num - 1); }),
+                          [&](int num) mutable
+                          {
+                              auto cons_view = std::views::iota(num + 1) |
+                                               std::views::take_while([&](int n) { return nums_set.contains(n); });
+                              int streak = 1 + std::ranges::distance(cons_view);
+                              longest_cons = std::max(longest_cons, streak);
+                          });
     return longest_cons;
 }
 
