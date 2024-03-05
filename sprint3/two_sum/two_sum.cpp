@@ -17,20 +17,13 @@ struct StringMaker<std::vector<T>>
 
 std::vector<int> two_sum(std::vector<int>& nums, int target)
 {
-  std::unordered_map<int,int> cache{};
-  for(size_t i{0}; i < nums.size(); ++i)
+  std::unordered_map<int,int> numsIndexes{};
+  for(size_t curr{0}; curr < nums.size(); ++curr)
   {
-    cache[nums[i]] = i;
-  }
-
-  for(size_t curr{0}; curr < nums.size() - 1; ++curr)
-  {
-    // look for second in cache
-    if(auto second = cache.find(target - nums[curr]); second != cache.end()){
-      auto secondPos = second->second;
-      if(secondPos == curr) continue;
-      return {curr, secondPos};
+    if(int complement = target - nums[curr]; numsIndexes.find(complement) != numsIndexes.end()){
+      return {numsIndexes[complement], curr};
     }
+    numsIndexes[nums[curr]] = curr;
   }
 
   return {0,0};
