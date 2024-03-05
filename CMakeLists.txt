@@ -24,6 +24,7 @@ add_executable(widest_vertical_area sprint2/widest_vertical_area/widest_vertical
 add_executable(two_sum sprint3/two_sum/two_sum.cpp)
 add_executable(contains_duplicate sprint3/contains_duplicate/contains_duplicate.cpp)
 add_executable(product_of_array_except_self sprint3/product_of_array_except_self/product_of_array_except_self.cpp)
+add_executable(longest_consecutive sprint3/longest_consecutive/longest_consecutive.cpp)
 
 
 target_link_libraries(binary_search PRIVATE fmt::fmt doctest::doctest)
@@ -42,3 +43,4 @@ target_link_libraries(widest_vertical_area PRIVATE fmt::fmt doctest::doctest)
 target_link_libraries(contains_duplicate PRIVATE fmt::fmt doctest::doctest)
 target_link_libraries(two_sum PRIVATE fmt::fmt doctest::doctest)
 target_link_libraries(product_of_array_except_self PRIVATE fmt::fmt doctest::doctest)
+target_link_libraries(longest_consecutive PRIVATE fmt::fmt doctest::doctest)
