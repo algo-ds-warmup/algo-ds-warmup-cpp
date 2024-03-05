@@ -21,6 +21,7 @@ add_executable(max_prod_of_3 sprint2/max_prod_of_3/max_prod_of_3.cpp)
 add_executable(widest_vertical_area sprint2/widest_vertical_area/widest_vertical_area.cpp)
 add_executable(contains_duplicate sprint3/contains_duplicate/contains_duplicate.cpp)
 
+add_executable(two_sum sprint3/two_sum/two_sum.cpp)
 
 
 target_link_libraries(binary_search PRIVATE fmt::fmt doctest::doctest)
@@ -35,5 +36,6 @@ target_link_libraries(relative_ranks PRIVATE fmt::fmt doctest::doctest)
 target_link_libraries(max_prod_of_3 PRIVATE fmt::fmt doctest::doctest)
 target_link_libraries(widest_vertical_area PRIVATE fmt::fmt doctest::doctest)
 
-target_link_libraries(contains_duplicate PRIVATE fmt::fmt doctest::doctest)
 
+target_link_libraries(contains_duplicate PRIVATE fmt::fmt doctest::doctest)
+target_link_libraries(two_sum PRIVATE fmt::fmt doctest::doctest)
