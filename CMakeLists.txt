@@ -21,6 +21,11 @@ add_executable(max_prod_of_3 sprint2/max_prod_of_3/max_prod_of_3.cpp)
 add_executable(widest_vertical_area sprint2/widest_vertical_area/widest_vertical_area.cpp)
 
 #sprint3
+<<<<<<< Updated upstream
+=======
+add_executable(valid_parentheses sprint4/valid_parentheses/valid_parentheses.cpp)
+
+>>>>>>> Stashed changes
 add_executable(two_sum sprint3/two_sum/two_sum.cpp)
 add_executable(contains_duplicate sprint3/contains_duplicate/contains_duplicate.cpp)
 add_executable(product_of_array_except_self sprint3/product_of_array_except_self/product_of_array_except_self.cpp)
@@ -38,6 +43,8 @@ target_link_libraries(third_max PRIVATE fmt::fmt doctest::doctest)
 target_link_libraries(relative_ranks PRIVATE fmt::fmt doctest::doctest)
 target_link_libraries(max_prod_of_3 PRIVATE fmt::fmt doctest::doctest)
 target_link_libraries(widest_vertical_area PRIVATE fmt::fmt doctest::doctest)
+
+target_link_libraries(valid_parentheses PRIVATE fmt::fmt doctest::doctest)
 
 
 target_link_libraries(contains_duplicate PRIVATE fmt::fmt doctest::doctest)
