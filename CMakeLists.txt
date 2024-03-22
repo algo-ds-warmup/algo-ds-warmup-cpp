@@ -28,6 +28,7 @@ add_executable(longest_consecutive sprint3/longest_consecutive/longest_consecuti
 
 #sprint4
 add_executable(valid_parentheses sprint4/valid_parentheses/valid_parentheses.cpp)
+add_executable(min-stack sprint4/min-stack/min-stack.cpp)
 
 target_link_libraries(binary_search PRIVATE fmt::fmt doctest::doctest)
 target_link_libraries(koko PRIVATE fmt::fmt doctest::doctest)
@@ -47,3 +48,4 @@ target_link_libraries(product_of_array_except_self PRIVATE fmt::fmt doctest::doc
 target_link_libraries(longest_consecutive PRIVATE fmt::fmt doctest::doctest)
 
 target_link_libraries(valid_parentheses PRIVATE fmt::fmt doctest::doctest)
+target_link_libraries(min-stack PRIVATE fmt::fmt doctest::doctest)
