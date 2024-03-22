@@ -26,6 +26,8 @@ add_executable(contains_duplicate sprint3/contains_duplicate/contains_duplicate.
 add_executable(product_of_array_except_self sprint3/product_of_array_except_self/product_of_array_except_self.cpp)
 add_executable(longest_consecutive sprint3/longest_consecutive/longest_consecutive.cpp)
 
+#sprint4
+add_executable(valid_parentheses sprint4/valid_parentheses/valid_parentheses.cpp)
 
 target_link_libraries(binary_search PRIVATE fmt::fmt doctest::doctest)
 target_link_libraries(koko PRIVATE fmt::fmt doctest::doctest)
@@ -39,8 +41,9 @@ target_link_libraries(relative_ranks PRIVATE fmt::fmt doctest::doctest)
 target_link_libraries(max_prod_of_3 PRIVATE fmt::fmt doctest::doctest)
 target_link_libraries(widest_vertical_area PRIVATE fmt::fmt doctest::doctest)
 
-
 target_link_libraries(contains_duplicate PRIVATE fmt::fmt doctest::doctest)
 target_link_libraries(two_sum PRIVATE fmt::fmt doctest::doctest)
 target_link_libraries(product_of_array_except_self PRIVATE fmt::fmt doctest::doctest)
 target_link_libraries(longest_consecutive PRIVATE fmt::fmt doctest::doctest)
+
+target_link_libraries(valid_parentheses PRIVATE fmt::fmt doctest::doctest)
