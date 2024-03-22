@@ -28,10 +28,30 @@ struct stack
         return m_data[m_size];
     }
 
+    stack() = default;
+    stack(const stack<T>& o)
+    {
+        if (m_data != o.m_data)
+        {
+            m_capacity = o.capacity();
+            m_size = o.m_size();
+            m_data = std::malloc(m_capacity * sizeof(T));
+            std::memcpy(m_data, o.m_data, m_size);
+        }
+    }
+
+    ~stack()
+    {
+        if (m_data)
+        {
+            std::free(m_data);
+        }
+    }
+
 private:
     size_t m_capacity{1};
     size_t m_size{0};
-    T* m_data;
+    T* m_data = nullptr;
 };
 
 TEST_CASE("stack test")
@@ -77,3 +97,41 @@ TEST_CASE("stack test")
         }
     }
 }
+
+constexpr std::string_view CLOSE_PARENTHESES{"]})"};
+constexpr std::string_view OPEN_PARENTHESES{"[{("};
+
+bool is_valid(std::string str)
+{
+    stack<char> st;
+    for (const char c : str)
+    {
+        if (std::ranges::count(OPEN_PARENTHESES, c))
+        {
+            st.push(c);
+        }
+        else if (auto posIndCl = std::ranges::find(CLOSE_PARENTHESES, c); posIndCl != std::end(CLOSE_PARENTHESES))
+        {
+            if (st.empty())
+                return false;
+
+            if (auto posIndOp = std::ranges::find(OPEN_PARENTHESES, st.top());
+                std::distance(OPEN_PARENTHESES.begin(), posIndOp) == std::distance(CLOSE_PARENTHESES.begin(), posIndCl))
+            {
+                st.pop();
+            }
+            else // close parentheses, but isn't expected one
+              return false; 
+        }
+    }
+    return st.empty();
+}
+
+TEST_CASE("Example 1") { REQUIRE(is_valid("()")); }
+TEST_CASE("Example 2") { REQUIRE(is_valid("()[]{}")); }
+TEST_CASE("Example 3") { REQUIRE_FALSE(is_valid("(}")); }
+TEST_CASE("Example 4") { REQUIRE_FALSE(is_valid("}")); }
+TEST_CASE("Example 5") { REQUIRE_FALSE(is_valid("(")); }
+TEST_CASE("Example 6") { REQUIRE(is_valid("")); }
+
+TEST_CASE("TC 1") { REQUIRE_FALSE(is_valid("(])")); }
