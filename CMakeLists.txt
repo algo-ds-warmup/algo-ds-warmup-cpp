@@ -34,6 +34,7 @@ add_executable(reveal-cards-in-increasing-order ./sprint4/reveal-cards-in-increa
 add_executable(merge-two-sorted-lists ./sprint4/merge-two-sorted-lists/merge-two-sorted-lists.cpp)
 add_executable(add-two-numbers sprint4/add-two-numbers/add-two-numbers.cpp)
 add_executable(reverse-linked-list ./sprint4/reverse-linked-list/reverse-linked-list.cpp)
+add_executable(swap-nodes-in-pairs ./sprint4/swap-nodes-in-pairs/swap-nodes-in-pairs.cpp)
 
 
 target_link_libraries(binary_search PRIVATE fmt::fmt doctest::doctest)
@@ -60,3 +61,4 @@ target_link_libraries(reveal-cards-in-increasing-order PRIVATE fmt::fmt doctest:
 target_link_libraries(merge-two-sorted-lists PRIVATE fmt::fmt doctest::doctest)
 target_link_libraries(add-two-numbers PRIVATE fmt::fmt doctest::doctest)
 target_link_libraries(reverse-linked-list PRIVATE fmt::fmt doctest::doctest)
+target_link_libraries(swap-nodes-in-pairs PRIVATE fmt::fmt doctest::doctest)
